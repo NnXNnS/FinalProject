@@ -17,11 +17,8 @@ public class Trip {
     @GeneratedValue(generator="uuid2")
     @GenericGenerator(name="uuid2",strategy = "uuid2")
     private String id;
-    @NotBlank
     private int fare;
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date journeyTime;
+    private int journeyTime;
     @NotBlank
     private String sourceStopId;
     @NotBlank
@@ -55,11 +52,11 @@ public class Trip {
         this.fare = fare;
     }
 
-    public Date getJourneyTime() {
+    public int getJourneyTime() {
         return journeyTime;
     }
 
-    public void setJourneyTime(Date journeyTime) {
+    public void setJourneyTime(int journeyTime) {
         this.journeyTime = journeyTime;
     }
 
