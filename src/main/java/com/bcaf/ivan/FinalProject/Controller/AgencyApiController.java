@@ -34,8 +34,15 @@ public class AgencyApiController {
     }
     @PostMapping("/updateAgency")
     public String updateAgency(@RequestBody Agency agency, HttpServletRequest request) throws JsonProcessingException {
-        agency.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
-        agencyDao.save(agency);
+        HttpSession session = request.getSession(true);
+        String agencyId = (String) session.getAttribute("agencyId");
+        Agency agencyDB = agencyDao.findById(agencyId).get();
+        if(agency.getName()!=null && agency.getName()!="")
+            agencyDB.setName(agency.getName());
+        if(agency.getDetails()!=null && agency.getDetails()!="")
+            agencyDB.setDetails(agency.getDetails());
+        agencyDB.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
+        agencyDao.save(agencyDB);
         ObjectMapper Obj = new ObjectMapper();
         String rs = Obj.writeValueAsString(agency);
         return rs;

@@ -317,8 +317,8 @@
                                 <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
                                      src="img/undraw_posting_photo.svg" alt="">
                                 <div class="text-center">
-                                    <h4 id="agencyName" class="text-gray-800">Agency name</h4>
-                                    <h6 id="agencyDetails">Agency code</h6>
+                                    <h4 id="agencyName" class="text-gray-800" th:text="${agencyName}">Agency name</h4>
+                                    <h6 id="agencyDetails" th:text="${agencyDetail}">Agency code</h6>
                                 </div>
                             </div>
                         </div>
@@ -331,7 +331,7 @@
                                             <h5>Agency Name</h5>
                                             <div class="input-group">
                                                 <input type="text" class="form-control bg-light border-0 small"
-                                                       id="changeAgencyName"
+                                                       id="changeAgencyName" th:value="${agencyName}"
                                                        aria-label="Search" aria-describedby="basic-addon2">
                                             </div>
                                         </div>
@@ -340,7 +340,7 @@
                                             <h5>Agency Details</h5>
                                             <div class="input-group">
                                                 <input type="text" class="form-control bg-light border-0 small"
-                                                       id="changeAgencyDetails"
+                                                       id="changeAgencyDetails" th:value="${agencyDetail}"
                                                        aria-label="Search" aria-describedby="basic-addon2">
                                             </div>
                                         </div>
@@ -413,6 +413,7 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
+<script type="text/javascript" th:src="@{/js/AgencyPage.js}"></script>
 
 </body>
 
