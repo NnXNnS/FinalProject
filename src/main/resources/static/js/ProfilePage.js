@@ -16,6 +16,7 @@ function updateProfile(){
             success: function(data) {
                 $('#profileName').text(data.firstName+" "+data.lastName);
                 $('#firstName').text(data.firstName);
+                $('#topProfile').text(data.firstName);
                 $('#changeFirstName').val(data.firstName);
                 $('#changeLastName').val(data.lastName);
                 $('#changePhoneNumber').val(data.mobileNumber);
