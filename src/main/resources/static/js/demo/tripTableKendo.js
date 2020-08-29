@@ -28,7 +28,7 @@ $(document).ready(function() {
             },
             parameterMap: function(options, operation) {
                 if (operation !== "read" && options.models) {
-                    return kendo.stringify(options.models);
+                    return JSON.stringify(options.models);
                 }
             }
         },
@@ -38,16 +38,16 @@ $(document).ready(function() {
             model: {
                 id: "id",
                 fields: {
-//                    todo: model trip yang mo di tampilin
+                    bus:{ defaultValue: { id: '', code: ''}, validation: { required: true} },
+                    sourceStop: { defaultValue: { id: 'abdaee06-e94b-11ea-ad57-28c2dd108650', name: "SOC-01"} , validation: { required: true} },
+                    destinationStop: { defaultValue: { id: 'd5dd9e40-e94b-11ea-ad57-28c2dd108650', name: "DPS-01"}, validation: { required: true}  },
+                    journeyTime: { type: "number", validation: { required: true, min: 0} },
+                    fare: { type: "number", validation: { required: true, min: 0} },
                 }
             }
-        },
-        sort: {
-            field: "code",
-            dir: "asc"
         }
    });
-   $("#grid").kendoGrid({
+   $("#tripTable").kendoGrid({
         dataSource: dataSource,
         navigatable: true,
         height: 400,
@@ -71,22 +71,28 @@ $(document).ready(function() {
                 width: 50
             },
             {
-                field: "code",
+                field: "bus",
                 width: 150,
-                title:"Bus Code"
+                title:"Bus Code",
+                template: "#=bus.code#",
+                editor: busDropDownEditor
             },
             {
                 field: "sourceStop", /*todo: sesuaikan dengan model*/
                 width: 200,
-                title:"Source Stop"
+                title:"Source Stop",
+                template: "#=sourceStop.name#",
+                editor: stopDropDownEditor
             },
             {
                 field: "destinationStop", /*todo: sesuaikan dengan model*/
                 width: 200,
-                title:"Destination Stop"
+                title:"Destination Stop",
+                template: "#=destinationStop.name#",
+                editor: stopDropDownEditor
             },
             {
-                field: "duration",
+                field: "journeyTime",
                 title: "Duration",
                 width: 150,
                 attributes: {
@@ -94,12 +100,14 @@ $(document).ready(function() {
                 },
                 headerAttributes: {
                     style: "text-align: center;"
-                }
+                },
+                template: "#=journeyTime# #if(journeyTime>1){# mins #}else{# min #}#",
             },
             {
                 field: "fare",
                 title: "Fare",
                 width: 100,
+                format: "{0:c}",
                 attributes: {
                     style: "text-align: center;"
                 },
@@ -126,3 +134,41 @@ $(document).ready(function() {
         }
    });
 });
+function busDropDownEditor(container, options) {
+$('<input required name="' + options.field + '"/>')
+   .appendTo(container)
+   .kendoDropDownList({
+       autoBind: false,
+       dataTextField: "code",
+       dataValueField: "id",
+       dataSource: {
+           transport: {
+               read: {
+                 url: "/api/getAllBus",
+                 dataType: "json",
+                 type: "POST",
+                 contentType: "application/json"
+             }
+           }
+       }
+   });
+}
+function stopDropDownEditor(container, options) {
+$('<input required name="' + options.field + '"/>')
+   .appendTo(container)
+   .kendoDropDownList({
+       autoBind: false,
+       dataTextField: "name",
+       dataValueField: "id",
+       dataSource: {
+           transport: {
+               read: {
+                 url: "/api/getAllStop",
+                 dataType: "json",
+                 type: "POST",
+                 contentType: "application/json"
+             }
+           }
+       }
+   });
+}

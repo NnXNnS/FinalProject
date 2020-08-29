@@ -3,6 +3,7 @@ package com.bcaf.ivan.FinalProject.Controller;
 import com.bcaf.ivan.FinalProject.Entity.Agency;
 import com.bcaf.ivan.FinalProject.Entity.User;
 import com.bcaf.ivan.FinalProject.Util.AgencyDao;
+import com.bcaf.ivan.FinalProject.Util.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,15 @@ public class AgencyController {
     @Autowired
     AgencyDao agencyDao;
 
+    @Autowired
+    private UserDao userDao;
     @GetMapping
     @RequestMapping({"/agency"})
     public String viewAgency(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(true);
+        String userId=(String)session.getAttribute("connectedUser");
+        User user = userDao.findById(userId).get();
+        model.addAttribute("firstName",user.getFirstName());
         String agencyId = (String) session.getAttribute("agencyId");
         Agency agency = agencyDao.findById(agencyId).get();
         model.addAttribute("agencyName",agency.getName());

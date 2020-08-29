@@ -16,7 +16,6 @@ public class Stop {
     @GeneratedValue(generator="uuid2")
     @GenericGenerator(name="uuid2",strategy = "uuid2")
     private String id;
-    @NotBlank
     private String code;
     @NotBlank
     private String name;
