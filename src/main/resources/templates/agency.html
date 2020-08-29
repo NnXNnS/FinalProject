@@ -180,63 +180,63 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Agency Details</h1>
+                <h2 class="mb-2 text-gray-800">Agency Details</h2>
                 <div class="row">
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- Agency Picture -->
-                        <div class="col-6">
-                            <div class="card shadow mb-4">
-                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                     src="img/undraw_posting_photo.svg" alt="">
+                    <!--<editor-fold desc="agency picture">-->
+                    <div class="col-xl-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
                                 <div class="text-center">
-                                    <h4 id="agencyName" class="text-gray-800" th:text="${agencyName}">Agency name</h4>
-                                    <h6 id="agencyDetails" th:text="${agencyDetail}">Agency code</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="card shadow mb-4">
-                                <div class="card-body">
-                                    <form action="#" method="post" id="updateAgency">
-                                        <div class="row">
-                                            <h5>Agency Name</h5>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control bg-light border-0 small"
-                                                       id="changeAgencyName" th:value="${agencyName}"
-                                                       aria-label="Search" aria-describedby="basic-addon2">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <h5>Agency Details</h5>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control bg-light border-0 small"
-                                                       id="changeAgencyDetails" th:value="${agencyDetail}"
-                                                       aria-label="Search" aria-describedby="basic-addon2">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                                                    type="submit" id="updateAgencyBtn">
-                                                Update
-                                            </button>
-                                        </div>
-                                    </form>
+                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-3" style="width: 25rem;"
+                                         src="img/2573603.jpg" alt="">
+                                    <h4 id="agencyName" class="mb-1 font-weight-bold text-gray-900" th:text="${agencyName}">agency
+                                        name</h4>
+                                    <h6 id="agencyDetails" th:text="${agencyDetail}">agency detail</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--</editor-fold>-->
+
+                    <!--<editor-fold desc="edit agency data">-->
+                    <div class="col-xl-8">
+                        <div class="card shadow mb-4 p-1">
+                            <div class="card-body">
+                                <h4 class="mb-2 font-weight-bold text-primary">Edit data</h4>
+                                <form action="#" method="post" id="updateAgency">
+                                    <div class="mb-3">
+                                        <h5 class="text-gray-800">Name</h5>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control border-1 small"
+                                                   id="changeAgencyName" th:value="${agencyName}">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h5 class="text-gray-800">Details</h5>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control border-1 small"
+                                                   id="changeAgencyDetails" th:value="${agencyDetail}"
+                                                   aria-label="Search" aria-describedby="basic-addon2">
+                                        </div>
+                                    </div>
+
+                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                            type="submit" id="updateAgencyBtn">
+                                        Update
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</editor-fold>-->
                 </div>
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- End of Main Content -->
 
-        <!-- Footer -->
+        <!--<editor-fold desc="footer">-->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
@@ -244,7 +244,7 @@
                 </div>
             </div>
         </footer>
-        <!-- End of Footer -->
+        <!--</editor-fold>-->
 
     </div>
     <!-- End of Content Wrapper -->
@@ -257,7 +257,7 @@
     <i class="fas fa-angle-up"></i>
 </a>
 
-<!-- Logout Modal-->
+<!--<editor-fold desc="logout modal">-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -278,6 +278,7 @@
         </div>
     </div>
 </div>
+<!--</editor-fold>-->
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

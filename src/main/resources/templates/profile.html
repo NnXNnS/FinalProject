@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -183,101 +183,101 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <div>
-                    <h1 class="h3 mb-0 text-gray-800">Welcome, </h1>
-                    <h1 class="h3 mb-0 text-gray-800" id="firstName" th:text="${firstName}"></h1>
-                    </div>
+                <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                    <h3 class="h3 mb-0 text-gray-800">Welcome, <span id="firstName" th:text="${firstName}"></span></h3>
                 </div>
 
                 <!-- Content Row -->
                 <div class="row">
                     <!-- Content Row -->
-                    <div class="row">
-                        <!-- Profile Picture -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card shadow mb-4">
-                                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                     src="img/undraw_posting_photo.svg" alt="">
+                    <!--<editor-fold desc="profile picture">-->
+                    <div class="col-xl-4 col-md-4 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
                                 <div class="text-center">
-                                    <h4 id="profileName" th:text="${firstName+' '+lastName}">first + last name</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-body">
-                                    <form action="#" method="post" id="updateProfile">
-                                        <div class="row">
-                                            <h5>First Name</h5>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control bg-light border-0 small"
-                                                       id="changeFirstName" th:value="${firstName}"
-                                                       aria-label="Search" aria-describedby="basic-addon2">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <h5>Last Name</h5>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control bg-light border-0 small"
-                                                       id="changeLastName" th:value="${lastName}"
-                                                       aria-label="Search" aria-describedby="basic-addon2">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <h5>Phone Number</h5>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control bg-light border-0 small"
-                                                       id="changePhoneNumber" th:value="${phoneNumber}"
-                                                       aria-label="Search" aria-describedby="basic-addon2">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                                                    type="submit" id="userProfileBtn">
-                                                Update
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-body">
-                                    <form action="#" method="post" id="updateUser">
-                                        <div class="row">
-                                            <h5>Email</h5>
-                                            <div class="input-group">
-                                                <input type="email" class="form-control bg-light border-0 small"
-                                                       id="changeEmail" th:value="${email}"
-                                                       aria-label="Search" aria-describedby="basic-addon2">
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <h5>Password</h5>
-                                            <div class="input-group">
-                                                <input type="password" class="form-control bg-light border-0 small"
-                                                       id="changePassword"
-                                                       aria-label="Search" aria-describedby="basic-addon2">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                                                    type="submit" id="userUpdateBtn">
-                                                Update
-                                            </button>
-                                        </div>
-                                    </form>
+                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-3" style="width: 25rem;"
+                                         src="img/2573603.jpg" alt="">
+                                    <h4 class="mb-1 font-weight-bold text-gray-900" id="profileName"
+                                        th:text="${firstName+' '+lastName}">first + last name</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--</editor-fold>-->
+
+                    <!--<editor-fold desc="edit profile">-->
+                    <div class="col-xl-4 col-md-4 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <h5 class="mb-3 font-weight-bold text-primary">Edit Profile</h5>
+                                <form action="#" method="post" id="updateProfile">
+                                    <div class="mb-3">
+                                        <h6 class="text-gray-800">First Name</h6>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control border-1 small"
+                                                   id="changeFirstName" th:value="${firstName}">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h6 class="text-gray-800">Last Name</h6>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control border-1 small"
+                                                   id="changeLastName" th:value="${lastName}">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h6 class="text-gray-800">Phone Number</h6>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control border-1 small"
+                                                   id="changePhoneNumber" th:value="${phoneNumber}">
+                                        </div>
+                                    </div>
+
+                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                            type="submit" id="userProfileBtn">
+                                        Update
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</editor-fold>-->
+
+                    <!--<editor-fold desc="edit user">-->
+                    <div class="col-xl-4x col-md-4 mb-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <h5 class="mb-3 font-weight-bold text-primary">Edit User</h5>
+                                <form action="#" method="post" id="updateUser">
+                                    <div class="mb-3">
+                                        <h6 class="text-gray-800">Email</h6>
+                                        <div class="input-group">
+                                            <input type="email" class="form-control border-1 small"
+                                                   id="changeEmail" th:value="${email}">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h6 class="text-gray-800">Password</h6>
+                                        <div class="input-group">
+                                            <input type="password" class="form-control border-1 small"
+                                                   id="changePassword"
+                                                   aria-label="Search" aria-describedby="basic-addon2">
+                                        </div>
+                                    </div>
+
+                                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
+                                            type="submit" id="userUpdateBtn">
+                                        Update
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</editor-fold>-->
+
                 </div>
             </div>
             <!-- /.container-fluid -->
