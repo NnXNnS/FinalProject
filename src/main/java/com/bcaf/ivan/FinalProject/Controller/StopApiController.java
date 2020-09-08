@@ -18,14 +18,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/stop")
 public class StopApiController {
 
     @Autowired
     private StopDao stopDao;
 
     @PostMapping("/getAllStop")
-    public String getAllStop(HttpServletRequest request) throws JsonProcessingException {
+    public String getAllStop() throws JsonProcessingException {
         List<Stop> listStop = stopDao.findAll();
         if (listStop == null)
             listStop = new LinkedList<>();
@@ -33,4 +33,5 @@ public class StopApiController {
         String rs = Obj.writeValueAsString(listStop);
         return rs;
     }
+
 }

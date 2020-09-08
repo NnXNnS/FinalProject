@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/trip")
 public class TripApiController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class TripApiController {
     private StopDao stopDao;
 
 
-    @PostMapping("/getAllTrip")
+    @PostMapping("/getAllTripRec")
     public String getAgency(HttpServletRequest request) throws JsonProcessingException {
         HttpSession session = request.getSession(true);
         String agencyId = (String) session.getAttribute("agencyId");
@@ -51,6 +51,26 @@ public class TripApiController {
         String rs = Obj.writeValueAsString(tripExtList);
         return rs;
     }
+
+    @PostMapping("/getAllTrip")
+    public String getAllTrip(String agencyId) throws JsonProcessingException {
+        List<Trip> listTrip = tripDao.findAllByAgencyId(agencyId);
+        List<TripExt> tripExtList = new LinkedList<>();
+        for (Trip t :listTrip) {
+            TripExt newT = new TripExt(t);
+            Bus bus = busDao.findById(newT.getBusId()).get();
+            Stop sourceStop = stopDao.findById(newT.getSourceStopId()).get();
+            Stop destinationStop = stopDao.findById(newT.getDestStopId()).get();
+            newT.setBus(bus);
+            newT.setSourceStop(sourceStop);
+            newT.setDestinationStop(destinationStop);
+            tripExtList.add(newT);
+        }
+        ObjectMapper Obj = new ObjectMapper();
+        String rs = Obj.writeValueAsString(tripExtList);
+        return rs;
+    }
+
 
     @PostMapping("/addTrip")
     public String addTrip(@RequestBody List<TripExt> listTrip, HttpServletRequest request) throws JsonProcessingException {
@@ -72,8 +92,8 @@ public class TripApiController {
         return rs;
     }
 
-    @PostMapping("/updateTrip")
-    public String updateTrip(@RequestBody List<TripExt> listTrip, HttpServletRequest request) throws JsonProcessingException {
+    @PostMapping("/updateTripRec")
+    public String updateTripRec(@RequestBody List<TripExt> listTrip, HttpServletRequest request) throws JsonProcessingException {
         HttpSession session = request.getSession(true);
         String agencyId = (String) session.getAttribute("agencyId");
         for (TripExt t : listTrip) {
@@ -92,13 +112,68 @@ public class TripApiController {
     }
 
 
-    @PostMapping("/deleteTrip")
-    public String deleteTrip(@RequestBody List<TripExt> listTrip) throws JsonProcessingException {
+    @PostMapping("/deleteTripRec")
+    public String deleteTripRec(@RequestBody List<TripExt> listTrip) throws JsonProcessingException {
         for (TripExt t : listTrip) {
             tripDao.deleteById(t.getId());
         }
         ObjectMapper Obj = new ObjectMapper();
         String rs = Obj.writeValueAsString(listTrip);
+        return rs;
+    }
+
+    @PostMapping("/deleteTrip")
+    public String deleteTrip(String tripId) throws JsonProcessingException {
+        tripDao.deleteById(tripId);
+        ObjectMapper Obj = new ObjectMapper();
+        String rs = Obj.writeValueAsString(tripId);
+        return rs;
+    }
+
+    @PostMapping("/getTripById")
+    public String getTripById(String tripId) throws JsonProcessingException {
+        Trip t= tripDao.findById(tripId).get();
+        TripExt newT = new TripExt(t);
+        Bus bus = busDao.findById(newT.getBusId()).get();
+        Stop sourceStop = stopDao.findById(newT.getSourceStopId()).get();
+        Stop destinationStop = stopDao.findById(newT.getDestStopId()).get();
+        newT.setBus(bus);
+        newT.setSourceStop(sourceStop);
+        newT.setDestinationStop(destinationStop);
+        ObjectMapper Obj = new ObjectMapper();
+        String rs = Obj.writeValueAsString(newT);
+        return rs;
+    }
+
+
+    @PostMapping("/createTrip")
+    public String createTrip(@RequestBody TripExt trip) throws JsonProcessingException {
+        Trip newTrip=new Trip();
+        newTrip.setAgencyId(trip.getAgencyId());
+        newTrip.setBusId(trip.getBus().getId());
+        newTrip.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+        newTrip.setDestStopId(trip.getDestinationStop().getId());
+        newTrip.setSourceStopId(trip.getSourceStop().getId());
+        newTrip.setFare(trip.getFare());
+        newTrip.setJourneyTime(trip.getJourneyTime());
+        tripDao.save(newTrip);
+        ObjectMapper Obj = new ObjectMapper();
+        String rs = Obj.writeValueAsString(newTrip);
+        return rs;
+    }
+
+    @PostMapping("/updateTrip")
+    public String updateTrip(@RequestBody TripExt t) throws JsonProcessingException {
+        Trip newT=tripDao.findById(t.getId()).get();
+        newT.setFare(t.getFare());
+        newT.setJourneyTime(t.getJourneyTime());
+        newT.setBusId(t.getBus().getId());
+        newT.setSourceStopId(t.getSourceStop().getId());
+        newT.setDestStopId(t.getDestinationStop().getId());
+        newT.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
+        tripDao.save(newT);
+        ObjectMapper Obj = new ObjectMapper();
+        String rs = Obj.writeValueAsString(newT);
         return rs;
     }
 }
