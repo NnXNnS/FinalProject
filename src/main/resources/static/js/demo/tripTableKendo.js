@@ -3,25 +3,25 @@ $(document).ready(function() {
     dataSource = new kendo.data.DataSource({
         transport: {
             read:  {
-                url: "/api/getAllTrip",
+                url: "/api/trip/getAllTrip",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"
             },
             update: {
-                url: "/api/updateTrip",
+                url: "/api/trip/updateTrip",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"
             },
             destroy: {
-                url: "/api/deleteTrip",
+                url: "/api/trip/deleteTrip",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"
             },
             create: {
-                url: "/api/addTrip",
+                url: "/api/trip/addTrip",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"
@@ -144,7 +144,7 @@ function busDropDownEditor(container, options) {
        dataSource: {
            transport: {
                read: {
-                 url: "/api/getAllBus",
+                 url: "/api/bus/getAllBus",
                  dataType: "json",
                  type: "POST",
                  contentType: "application/json"
@@ -165,7 +165,7 @@ $('<input required name="' + options.field + '"/>')
        dataSource: {
            transport: {
                read: {
-                 url: "/api/getAllStop",
+                 url: "/api/stop/getAllStop",
                  dataType: "json",
                  type: "POST",
                  contentType: "application/json"

@@ -2,12 +2,8 @@ package com.bcaf.ivan.FinalProject.Controller;
 
 import com.bcaf.ivan.FinalProject.Entity.Agency;
 import com.bcaf.ivan.FinalProject.Entity.User;
-import com.bcaf.ivan.FinalProject.Request.RegisterRequest;
-import com.bcaf.ivan.FinalProject.Request.UserAgencyToken;
-import com.bcaf.ivan.FinalProject.Util.AgencyDao;
-import com.bcaf.ivan.FinalProject.Util.CreateJWT;
-import com.bcaf.ivan.FinalProject.Util.RoleDao;
-import com.bcaf.ivan.FinalProject.Util.UserDao;
+import com.bcaf.ivan.FinalProject.Request.*;
+import com.bcaf.ivan.FinalProject.Util.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

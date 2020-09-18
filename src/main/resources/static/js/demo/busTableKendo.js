@@ -4,25 +4,25 @@ $(document).ready(function() {
     dataSource = new kendo.data.DataSource({
         transport: {
             read:  {
-                url: "/api/getAllBus",
+                url: "/api/bus/getAllBus",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"
             },
             update: {
-                url: "/api/updateBus",
+                url: "/api/bus/updateBusRec",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"
             },
             destroy: {
-                url: "/api/deleteBus",
+                url: "/api/bus/deleteBusRec",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"
             },
             create: {
-                url: "/api/addBus",
+                url: "/api/bus/addBus",
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json"

@@ -8,7 +8,7 @@ function updateProfile(){
             mobileNumber:$('#changePhoneNumber').val()
         };
         $.ajax({
-            url :  "/api/updateProfile",
+            url :  "/api/user/updateProfile",
             type: request_method,
             dataType: 'json',
             contentType: 'application/json',
@@ -35,7 +35,7 @@ function updateUser(){
             password:$('#changePassword').val()
         };
         $.ajax({
-            url :  "/api/updateProfile",
+            url :  "/api/user/updateProfile",
             type: request_method,
             dataType: 'json',
             contentType: 'application/json',

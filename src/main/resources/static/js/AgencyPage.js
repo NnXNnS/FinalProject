@@ -7,7 +7,7 @@ function updateAgency(){
             details:$('#changeAgencyDetails').val()
         };
         $.ajax({
-            url :  "/api/updateAgency",
+            url :  "/api/agency/updateAgencyRec",
             type: request_method,
             dataType: 'json',
             contentType: 'application/json',
