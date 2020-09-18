@@ -38,9 +38,9 @@ $(document).ready(function() {
             model: {
                 id: "id",
                 fields: {
-                    bus:{ defaultValue: { id: '', code: ''}, validation: { required: true} },
-                    sourceStop: { defaultValue: { id: 'abdaee06-e94b-11ea-ad57-28c2dd108650', name: "SOC-01"} , validation: { required: true} },
-                    destinationStop: { defaultValue: { id: 'd5dd9e40-e94b-11ea-ad57-28c2dd108650', name: "DPS-01"}, validation: { required: true}  },
+                    bus:{ type:'object',defaultValue:{id:'',code:''}, validation: { required: true} },
+                    sourceStop: { type:'object',defaultValue:{id:'',name:''} , validation: { required: true} },
+                    destinationStop: { type:'object',defaultValue:{id:'',name:''}, validation: { required: true}  },
                     journeyTime: { type: "number", validation: { required: true, min: 0} },
                     fare: { type: "number", validation: { required: true, min: 0} },
                 }
@@ -135,7 +135,7 @@ $(document).ready(function() {
    });
 });
 function busDropDownEditor(container, options) {
-$('<input required name="' + options.field + '"/>')
+    $('<input id="busDropDown" required name="' + options.field + '"/>')
    .appendTo(container)
    .kendoDropDownList({
        autoBind: false,
@@ -149,9 +149,11 @@ $('<input required name="' + options.field + '"/>')
                  type: "POST",
                  contentType: "application/json"
              }
-           }
-       }
+           },
+       },
    });
+
+    $("#busDropDown").data('kendoDropDownList').select(1);
 }
 function stopDropDownEditor(container, options) {
 $('<input required name="' + options.field + '"/>')

@@ -5,6 +5,7 @@ import com.bcaf.ivan.FinalProject.Entity.Trip;
 import com.bcaf.ivan.FinalProject.Entity.TripExt;
 import com.bcaf.ivan.FinalProject.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,9 @@ import java.util.List;
 public interface TripDao extends JpaRepository<Trip, String> {
     @Query(nativeQuery = true,value="SELECT t.* FROM tb_trip t WHERE t.agency_id =:agencyId ")
     List<Trip> findAllByAgencyId(@Param("agencyId") String agencyId);
+
+
+    @Query(nativeQuery = true,value="SELECT t.* FROM tb_trip t WHERE t.bus_id =:busId ")
+    List<Trip> findAllByBusId(@Param("busId") String busId);
+
 }
