@@ -61,6 +61,8 @@ public class UserApiController {
     @PostMapping("/checkEmailUserByUser")
     public String checkEmailUser(@RequestBody User userParam) throws JsonProcessingException {
         User user = userDao.findEmailValidation(userParam.getEmail());
+        if(user!=null && user.getId().equals(userParam.getId()))
+            user=new User();
         if (user == null)
             user = new User();
         ObjectMapper Obj = new ObjectMapper();
